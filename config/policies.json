@@ -1,0 +1,45 @@
+{
+  "policies": [
+    {
+      "handler": {
+        "export": "SetQueryParamsInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "params": [
+            {
+              "name": "apikey",
+              "value": "nzKLzkhyFfoKDrGgB8Tm5UTd79QlLw2e",
+              "overwrite": true
+            }
+          ]
+        }
+      },
+      "name": "set-query-params-inbound",
+      "policyType": "set-query-params-inbound"
+    },
+    {
+      "handler": {
+        "export": "RateLimitInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "rateLimitBy": "ip",
+          "requestsAllowed": 1,
+          "timeWindowMinutes": 1
+        }
+      },
+      "name": "rate-limit-inbound",
+      "policyType": "rate-limit-inbound"
+    },
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false
+        }
+      },
+      "name": "api-key-inbound",
+      "policyType": "api-key-inbound"
+    }
+  ]
+}

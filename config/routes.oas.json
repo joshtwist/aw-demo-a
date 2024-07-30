@@ -1,0 +1,35 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Zuplo API"
+  },
+  "paths": {
+    "/{locationKey}": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get all todos",
+        "description": "Lorem ipsum dolor sit amet, **consectetur adipiscing** elit, sed do `eiusmod tempor` incididunt ut labore et dolore magna aliqua.",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlRewriteHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "rewritePattern": "http://dataservice.accuweather.com/forecasts/v1/daily/1day/${params.locationKey}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound",
+              "set-query-params-inbound"
+            ]
+          }
+        },
+        "operationId": "b2303ec5-a599-4bcf-bfc3-7e930fe3b251"
+      }
+    }
+  }
+}
